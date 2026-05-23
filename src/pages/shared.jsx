@@ -53,13 +53,14 @@ export function NextButton({ label, onClick }) {
 
 export function MobileFrame({ children }) {
   return (
-    <div className="cad" style={{
+    <div className="cad mobile-demo-frame" style={{
       width: 390, height: 780,
       background: '#fff', borderRadius: 12, overflow: 'hidden',
       boxShadow: '0 8px 40px rgba(13,29,62,0.14)',
       border: '1px solid var(--line)', flexShrink: 0,
       position: 'relative',
     }}>
+      <style>{`.mobile-demo-frame .shell { overflow-y: auto !important; }`}</style>
       {children}
     </div>
   )
