@@ -35,7 +35,7 @@ const Ico4 = {
 };
 
 // ─── Emergency Context Card ─────────────────────────────────────────
-function EmergencyContextCard({ mobile = false }) {
+function EmergencyContextCard({ mobile = false, onOpenWarRoom }) {
   const card = (
     <div className="ectx">
       {/* Severity bar */}
@@ -155,7 +155,7 @@ function EmergencyContextCard({ mobile = false }) {
           SLA · <b>7h 03m</b> to resolve · synced 12s ago
         </div>
         <button className="btn btn-ghost">Mark as read</button>
-        <button className="btn btn-alert">Open war room <Ico4.arrow4/></button>
+        <button className="btn btn-alert" onClick={onOpenWarRoom}>Open war room <Ico4.arrow4/></button>
       </div>
     </div>
   );
@@ -191,7 +191,7 @@ function EmergencyContextCard({ mobile = false }) {
   );
 }
 
-function FrameEmergencyCtx() { return <EmergencyContextCard />; }
-function FrameEmergencyCtxMobile() { return <EmergencyContextCard mobile/>; }
+function FrameEmergencyCtx({ onOpenWarRoom }) { return <EmergencyContextCard onOpenWarRoom={onOpenWarRoom} />; }
+function FrameEmergencyCtxMobile({ onOpenWarRoom }) { return <EmergencyContextCard mobile onOpenWarRoom={onOpenWarRoom} />; }
 
 export { FrameEmergencyCtx, FrameEmergencyCtxMobile, EmergencyContextCard };

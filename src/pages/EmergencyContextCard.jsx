@@ -11,12 +11,12 @@ export default function EmergencyContextCard() {
   return (
     <PageLayout>
       <StepHeader
-        step="Emergency Flow · Step 3 of 3"
+        step="Emergency Flow · Step 3 of 4"
         title="Emergency Context Card"
         description="Condensed to outage-relevant information only. Scannable in under 2 minutes. Context valid for 4 hours — generated the moment the SME accepts."
       />
       <DesktopFrame width={860} minHeight={900}>
-        <FrameEmergencyCtx />
+        <FrameEmergencyCtx onOpenWarRoom={() => navigate('/emergency/war-room')} />
       </DesktopFrame>
       <div style={{ display: 'flex', gap: 12 }}>
         <button

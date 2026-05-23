@@ -14,6 +14,7 @@ import EmergencyContextCard from './pages/EmergencyContextCard.jsx'
 import ClientPortal from './pages/ClientPortal.jsx'
 import WellArchitected from './pages/WellArchitected.jsx'
 import FeatureOverview from './pages/FeatureOverview.jsx'
+import EmergencyWarRoom from './pages/EmergencyWarRoom.jsx'
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/emergency/gap-flag" element={<EmergencyGapFlag />} />
             <Route path="/emergency/sme-request" element={<EmergencySMERequest />} />
             <Route path="/emergency/context-card" element={<EmergencyContextCard />} />
+            <Route path="/emergency/war-room" element={<EmergencyWarRoom />} />
             <Route path="/client-portal" element={<ClientPortal />} />
             <Route path="/well-architected" element={<WellArchitected />} />
           </Routes>
