@@ -50,6 +50,51 @@ export default function ScenarioSelect() {
         </p>
       </div>
 
+      {/* Overview link */}
+      <div style={{ width: '100%', maxWidth: 720, marginBottom: 20 }}>
+        <button
+          onClick={() => navigate('/overview')}
+          style={{
+            width: '100%',
+            background: '#fff', border: '1px solid var(--line)',
+            borderRadius: 8, padding: '20px 24px',
+            cursor: 'pointer', textAlign: 'left',
+            boxShadow: 'var(--shadow-card)',
+            transition: 'box-shadow 0.15s, border-color 0.15s, transform 0.15s',
+            borderLeft: '4px solid var(--navy)',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(13,29,62,0.12)'
+            e.currentTarget.style.transform = 'translateY(-2px)'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.boxShadow = 'var(--shadow-card)'
+            e.currentTarget.style.transform = 'translateY(0)'
+          }}
+        >
+          <div>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              fontSize: 10.5, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase',
+              color: '#fff', background: 'var(--navy)',
+              padding: '3px 8px', borderRadius: 999, marginBottom: 10,
+            }}>
+              Feature Overview
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--navy)', marginBottom: 4, letterSpacing: '-0.01em' }}>
+              What is On-Demand Talent?
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>
+              Full feature definition — lifecycle, modes, personas, access model, and value drivers.
+            </p>
+          </div>
+          <svg style={{ flexShrink: 0, marginLeft: 16 }} width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="var(--navy)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 7H11M7.5 3.5L11 7L7.5 10.5"/>
+          </svg>
+        </button>
+      </div>
+
       {/* Scenario cards */}
       <div style={{
         display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -185,53 +230,8 @@ export default function ScenarioSelect() {
         </button>
       </div>
 
-      {/* Overview link */}
-      <div style={{ width: '100%', maxWidth: 720, marginBottom: 48 }}>
-        <button
-          onClick={() => navigate('/overview')}
-          style={{
-            width: '100%',
-            background: '#fff', border: '1px solid var(--line)',
-            borderRadius: 8, padding: '20px 24px',
-            cursor: 'pointer', textAlign: 'left',
-            boxShadow: 'var(--shadow-card)',
-            transition: 'box-shadow 0.15s, border-color 0.15s, transform 0.15s',
-            borderLeft: '4px solid var(--navy)',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(13,29,62,0.12)'
-            e.currentTarget.style.transform = 'translateY(-2px)'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-            e.currentTarget.style.transform = 'translateY(0)'
-          }}
-        >
-          <div>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              fontSize: 10.5, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase',
-              color: '#fff', background: 'var(--navy)',
-              padding: '3px 8px', borderRadius: 999, marginBottom: 10,
-            }}>
-              Feature Overview
-            </div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--navy)', marginBottom: 4, letterSpacing: '-0.01em' }}>
-              What is On-Demand Talent?
-            </div>
-            <p style={{ fontSize: 13, color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>
-              Full feature definition — lifecycle, modes, personas, access model, and value drivers.
-            </p>
-          </div>
-          <svg style={{ flexShrink: 0, marginLeft: 16 }} width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="var(--navy)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 7H11M7.5 3.5L11 7L7.5 10.5"/>
-          </svg>
-        </button>
-      </div>
-
       {/* Other surfaces */}
-      <div style={{ width: '100%', maxWidth: 720 }}>
+      <div style={{ width: '100%', maxWidth: 720, marginBottom: 48 }}>
         <div style={{
           fontSize: 11, fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase',
           color: 'var(--muted)', marginBottom: 12,
