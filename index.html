@@ -10,50 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
-  html, body { height: 100%; margin: 0; background: #F4F6FB; font-family: "Inter", system-ui, sans-serif; }
-  body { color: #0D1D3E; }
-
-  .legend {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 5;
-    background: rgba(244, 246, 251, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 1px solid #E3E8F2;
-    padding: 14px 22px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 24px;
-  }
-  .legend-l { display: flex; align-items: baseline; gap: 14px; }
-  .legend-brand { font-size: 13px; font-weight: 600; letter-spacing: -0.005em; }
-  .legend-brand .dot {
-    display: inline-block; width: 8px; height: 8px; border-radius: 2px;
-    background: #07947C; margin-right: 8px; transform: translateY(-1px);
-  }
-  .legend-title { font-size: 13px; color: #2D2D2D; letter-spacing: -0.005em; }
-  .legend-title b { color: #0D1D3E; font-weight: 600; }
-  .legend-r {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 10.5px; color: #626679;
-    letter-spacing: 0.04em; text-transform: uppercase;
-  }
-  .canvas-host { padding-top: 50px; height: 100vh; box-sizing: border-box; }
-  .dc-canvas { background: #EDF1FD !important; }
+  html, body, #root { height: 100%; margin: 0; }
+  body { background: #F4F6FB; font-family: "Inter", system-ui, sans-serif; color: #0D1D3E; }
 </style>
 </head>
-
 <body>
-  <div class="legend">
-    <div class="legend-l">
-      <div class="legend-brand"><span class="dot"></span>Toptal AI Practice · On-Demand Talent</div>
-      <div class="legend-title"><b>All screens + WAR dashboard.</b> Talent · SME · Brief · Emergency · Mgmt · Client portal · Eligibility</div>
-    </div>
-    <div class="legend-r">v0.1 · 2026-05-23 · DEMO / MOCK DATA ONLY</div>
-  </div>
-
-  <div class="canvas-host">
-    <div id="root" style="height: 100%;"></div>
-  </div>
-
+  <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
