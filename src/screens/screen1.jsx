@@ -385,7 +385,7 @@ function LiveFlow({ onComplete }) {
 
   // Tiny reset chip in the corner
   return (
-    <div className="cad shell" style={{ position: "relative" }}>
+    <div className="cad shell" style={{ position: "relative", overflowY: "auto" }}>
       {state === "A" && (
         <StateA
           onFlagIt={() => setState("B")}

@@ -60,7 +60,6 @@ export function MobileFrame({ children }) {
       border: '1px solid var(--line)', flexShrink: 0,
       position: 'relative',
     }}>
-      <style>{`.mobile-demo-frame .shell { overflow-y: auto !important; }`}</style>
       {children}
     </div>
   )
