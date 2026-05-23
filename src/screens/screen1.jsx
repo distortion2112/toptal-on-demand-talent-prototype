@@ -422,6 +422,268 @@ function LiveFlow({ onComplete }) {
   );
 }
 
+// ─── Emergency State A: Production outage dashboard ──────────────────
+function EmergencyStateA({ onFlagIt }) {
+  return (
+    <>
+      <StatusBar time="14:07" />
+      <AppBar engagement="Halyard Capital · Trading Platform" />
+
+      <div className="page-head">
+        <div className="greeting" style={{ color: 'var(--alert)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: 'var(--alert)', boxShadow: '0 0 0 3px rgba(212,37,81,0.18)', flexShrink: 0 }} />
+          Production Incident · Active
+        </div>
+        <h1 className="h1">API Gateway <em>· Outage</em></h1>
+      </div>
+
+      {/* AI P1 Alert — the hero moment */}
+      <div className="section-label">
+        <span>Critical Alert</span>
+        <span className="right">12m ago · ongoing</span>
+      </div>
+      <div className="sugg" style={{ borderColor: 'rgba(212,37,81,0.3)' }}>
+        <div className="sugg-bar" style={{ background: 'var(--alert)' }} />
+        <div className="sugg-head">
+          <div className="sugg-eyebrow" style={{ color: 'var(--alert)' }}><span className="pulse" style={{ background: 'var(--alert)' }} />P1 · Production Down</div>
+          <div style={{ fontSize: 11, color: 'var(--ink-2)', fontWeight: 600, fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>14:07:32</div>
+        </div>
+        <div className="sugg-body">
+          <div className="sugg-title">
+            API Gateway returning <span className="skill" style={{ background: 'rgba(212,37,81,0.08)', color: 'var(--alert)' }}>503s</span> in production. No certified expert on the team — request an emergency SME now.
+          </div>
+          <div className="sugg-meta">
+            <div className="sugg-meta-cell">
+              <div className="sugg-meta-k">Error rate</div>
+              <div className="sugg-meta-v" style={{ color: 'var(--alert)', fontWeight: 700 }}>94%</div>
+            </div>
+            <div className="sugg-meta-cell">
+              <div className="sugg-meta-k">Req/min failing</div>
+              <div className="sugg-meta-v">1,400</div>
+            </div>
+            <div className="sugg-meta-cell">
+              <div className="sugg-meta-k">Skill gap</div>
+              <div className="sugg-meta-v">API Gtwy · Kong</div>
+            </div>
+            <div className="sugg-meta-cell">
+              <div className="sugg-meta-k">On-call SMEs</div>
+              <div className="sugg-meta-v">2 available</div>
+            </div>
+          </div>
+        </div>
+        <div className="sugg-actions">
+          <button className="btn btn-clay btn-block" style={{ flex: 1 }} onClick={onFlagIt}>
+            Request Emergency SME <Ico.arrow/>
+          </button>
+        </div>
+      </div>
+
+      {/* Incident feed */}
+      <div className="section-label">
+        <span>Incident Feed</span>
+      </div>
+      <div className="card">
+        <div className="list-row">
+          <div className="glyph blocked"><Ico.blocked/></div>
+          <div>
+            <div className="title">API-Gateway · 503 on all /v2/trade routes</div>
+            <div className="sub">Triggered 14:07 · 1,400 req/min failing</div>
+          </div>
+          <div className="meta" style={{ color: 'var(--alert)', fontWeight: 700 }}>P1</div>
+        </div>
+        <div className="list-row">
+          <div className="glyph blocked"><Ico.blocked/></div>
+          <div>
+            <div className="title">Kong rate-limit plugin · misconfigured after deploy</div>
+            <div className="sub">14:04 deploy · probable root cause</div>
+          </div>
+          <div className="meta">P1</div>
+        </div>
+        <div className="list-row">
+          <div className="glyph live"><Ico.pulse/></div>
+          <div>
+            <div className="title">Rollback attempted · still degraded</div>
+            <div className="sub">Marcus · in progress</div>
+          </div>
+          <div className="meta">P2</div>
+        </div>
+        <div className="list-row">
+          <div className="glyph done"><Ico.check/></div>
+          <div>
+            <div className="title">Alerts routed to on-call channel</div>
+            <div className="sub">PagerDuty · 14:08</div>
+          </div>
+          <div className="meta">—</div>
+        </div>
+      </div>
+
+      <div className="spacer" />
+    </>
+  );
+}
+
+// ─── Emergency State B: Pre-filled emergency request form ─────────────
+function EmergencyStateB({ onBack, onSubmit }) {
+  const [start] = useState("asap");
+  const [urgency, setUrgency] = useState(
+    "API Gateway returning 503s since 14:07. Kong rate-limit plugin appears misconfigured after the 14:04 deploy. Rollback attempted but still degraded. Need SME with hands-on Kong / AWS API Gateway incident experience immediately."
+  );
+
+  return (
+    <div className="sheet">
+      <StatusBar time="14:09" />
+      <div className="sheet-head">
+        <button className="btn btn-quiet" onClick={onBack} style={{ padding: "4px 6px", marginLeft: -6 }}>
+          <Ico.back/> Back
+        </button>
+        <div className="sheet-title">Emergency SME Request</div>
+        <div style={{ width: 56 }} />
+      </div>
+
+      <div className="sheet-body">
+        {/* Skill gap — AI populated */}
+        <div className="field">
+          <div className="field-label">
+            <span>Skill gap</span>
+            <span className="ai-chip"><Ico.sparkle style={{ marginRight: 3 }}/> AI-FILLED</span>
+          </div>
+          <div className="field-readonly">
+            <button className="edit">Edit</button>
+            <span className="skill-inline" style={{ background: 'rgba(212,37,81,0.08)', color: 'var(--alert)' }}>API Gateway</span> — Kong plugin config, rate limiting, distributed system incident response under live load.
+          </div>
+          <div className="field-help">Inferred from active P1 · API-GW-503 · Kong misconfiguration</div>
+        </div>
+
+        {/* Mode — locked to Emergency */}
+        <div className="field">
+          <div className="field-label"><span>Support mode</span></div>
+          <div className="mode" role="tablist">
+            <button
+              className="mode-opt emergency active"
+              role="tab" aria-selected={true}>
+              <span className="name">Emergency</span>
+              <span className="sla">8H · PROD OUTAGE</span>
+            </button>
+          </div>
+          <div className="field-help" style={{ color: 'var(--alert)' }}>
+            Production is down. Routes to on-call certified SMEs immediately.
+          </div>
+        </div>
+
+        {/* Urgency notes */}
+        <div className="field">
+          <div className="field-label"><span>Notes <span style={{ color: "var(--faint)", fontWeight: 500, textTransform: "none", letterSpacing: 0 }}>· optional</span></span></div>
+          <textarea
+            className="field-text"
+            rows={4}
+            value={urgency}
+            onChange={(e) => setUrgency(e.target.value)}
+            placeholder="Anything the SME should know up front?"
+          />
+        </div>
+
+        {/* Preferred start — locked to ASAP */}
+        <div className="field">
+          <div className="field-label"><span>Preferred start</span></div>
+          <div className="start-opts">
+            <button className="start-opt active">As soon as possible</button>
+          </div>
+        </div>
+
+        <div style={{ height: 12 }} />
+      </div>
+
+      <div className="sheet-foot">
+        <div className="submit-summary">
+          <span>You · <b>Maya R.</b></span>
+          <span>Engagement · <b>Halyard Capital</b></span>
+        </div>
+        <button className="btn btn-clay btn-lg btn-block" style={{ width: "100%" }} onClick={() => onSubmit()}>
+          Request emergency SME <Ico.arrow/>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── Emergency State C: P1 confirmation ──────────────────────────────
+function EmergencyStateC({ onContinue }) {
+  return (
+    <>
+      <StatusBar time="14:10" />
+      <AppBar engagement="Halyard Capital · Trading Platform" />
+
+      <div className="confirm">
+        <div className="confirm-check" style={{ background: 'var(--alert)', boxShadow: '0 0 0 6px rgba(212,37,81,0.12)' }}><Ico.check/></div>
+        <div className="confirm-h">P1 request submitted.</div>
+        <div className="confirm-sub">Pinging 2 on-call certified API Gateway SMEs now. Expected response within 8 hours.</div>
+        <div className="confirm-id">REQ · ODT-P1-0042 · MAY 23, 14:10</div>
+      </div>
+
+      <LifecycleStepper stage={1} />
+
+      <div className="notify" style={{ borderColor: 'rgba(212,37,81,0.2)', background: 'var(--alert-soft)' }}>
+        <div style={{ color: "var(--alert)", marginTop: 1 }}><Ico.bell/></div>
+        <div className="b">
+          <b>You'll get a push</b> the moment an SME accepts. Average emergency response: <b>23 min</b>.
+        </div>
+      </div>
+
+      {onContinue && (
+        <div style={{ padding: "16px 18px 24px" }}>
+          <button
+            onClick={onContinue}
+            style={{
+              width: "100%", padding: "12px",
+              background: "var(--alert)", color: "#fff",
+              border: "none", borderRadius: "var(--radius-sm)",
+              fontSize: 14, fontWeight: 600, cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+            }}
+          >
+            See SME request <Ico.arrow/>
+          </button>
+        </div>
+      )}
+    </>
+  );
+}
+
+// ─── Emergency Live Flow ──────────────────────────────────────────────
+function EmergencyLiveFlow({ onComplete }) {
+  const [state, setState] = useState("A");
+  const [resetKey, setResetKey] = useState(0);
+
+  return (
+    <div className="cad shell" style={{ position: "relative" }}>
+      {state === "A" && <EmergencyStateA onFlagIt={() => setState("B")} />}
+      {state === "B" && <EmergencyStateB onBack={() => setState("A")} onSubmit={() => setState("C")} />}
+      {state === "C" && <EmergencyStateC key={resetKey} onContinue={onComplete} />}
+
+      <button
+        onClick={() => { setState("A"); setResetKey((k) => k + 1); }}
+        title="Restart flow"
+        style={{
+          position: "absolute",
+          right: 12, bottom: 12,
+          background: "var(--ink)",
+          color: "var(--paper)",
+          border: "none",
+          borderRadius: 999,
+          fontFamily: "var(--font-mono)",
+          fontSize: 10.5,
+          letterSpacing: "0.06em",
+          padding: "6px 10px",
+          cursor: "pointer",
+          boxShadow: "var(--shadow-pop)",
+          textTransform: "uppercase",
+        }}>
+        ↻ Restart
+      </button>
+    </div>
+  );
+}
+
 // ─── Static frame wrappers for the static artboards ─────────────────
 function FrameA() {
   return <div className="cad shell"><StateA onFlagIt={() => {}} onDismiss={() => {}} /></div>;
@@ -433,4 +695,4 @@ function FrameC() {
   return <div className="cad shell"><StateC /></div>;
 }
 
-export { FrameA, FrameB, FrameC, LiveFlow };
+export { FrameA, FrameB, FrameC, LiveFlow, EmergencyLiveFlow };
