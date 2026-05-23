@@ -83,7 +83,8 @@ export default function DemoShell({ children }) {
         {/* Brand */}
         <button onClick={handleHome} style={{
           display: 'flex', alignItems: 'center', gap: 8,
-          background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+          background: 'none', border: 'none', cursor: 'pointer',
+          padding: '0 8px', alignSelf: 'stretch',
           flexShrink: 0,
         }}>
           <span style={{
