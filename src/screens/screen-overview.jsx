@@ -733,6 +733,9 @@ export function FrameOverview() {
           .ov-two-modes-grid > :first-child { display: none; }
           .ov-lifecycle-connector { display: none !important; }
           .ov-footer { flex-direction: column !important; gap: 8px; align-items: flex-start !important; }
+          .ov-table-cell-sprint { font-size: 13px; }
+          .ov-table-cell-emerg { font-size: 13px; }
+          .ov-table-cell-label { font-size: 11px; }
         }
         @media (max-width: 480px) {
           .ov-grid-4 { grid-template-columns: 1fr; }

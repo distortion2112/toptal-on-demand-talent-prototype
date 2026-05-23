@@ -4297,5 +4297,27 @@ body { margin: 0; }
 .war-actions .left b { color: var(--ink); font-weight: 600; }
 .war-actions .right { display: flex; gap: 8px; }
 
+/* ─── Responsive visibility (Fix 1) ─────────────────────────────── */
+.desktop-only { display: block; }
+.mobile-only  { display: none;  }
+
+@media (max-width: 767px) {
+  .desktop-only { display: none;  }
+  .mobile-only  { display: block; }
+}
+
+/* ─── Global tap targets on mobile (Fix 8) ───────────────────────── */
+@media (max-width: 767px) {
+  .btn { min-height: 44px; }
+  .req-actions .btn { min-height: 44px; }
+  .sugg-dismiss { padding: 10px; }
+}
+
+/* ─── req-meta 2-col on narrow mobile (Fix 7) ────────────────────── */
+@media (max-width: 480px) {
+  .req-meta { grid-template-columns: 1fr 1fr; }
+  .req-meta-k { font-size: 11px; }
+}
+
 
 
