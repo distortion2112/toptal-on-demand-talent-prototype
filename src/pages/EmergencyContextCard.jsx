@@ -18,7 +18,7 @@ export default function EmergencyContextCard() {
       <DesktopFrame width={860} minHeight={900}>
         <FrameEmergencyCtx onOpenWarRoom={() => navigate('/emergency/war-room')} />
       </DesktopFrame>
-      <div style={{ display: 'flex', gap: 12 }}>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
         <button
           onClick={() => { reset(); set({ mode: 'sprint', stage: 'flag' }); navigate('/sprint/gap-flag') }}
           style={{

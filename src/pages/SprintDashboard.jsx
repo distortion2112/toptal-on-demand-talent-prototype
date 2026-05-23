@@ -23,7 +23,7 @@ export default function SprintDashboard() {
       <DesktopFrame width={1380} minHeight={860}>
         <FrameMgmt />
       </DesktopFrame>
-      <div style={{ display: 'flex', gap: 12 }}>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
         <NextButton label="View emergency flow →" onClick={() => { reset(); set({ mode: 'emergency', stage: 'flag' }); navigate('/emergency/gap-flag') }} />
         <button
           onClick={restart}

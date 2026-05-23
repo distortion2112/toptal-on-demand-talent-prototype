@@ -52,12 +52,10 @@ function Pill({ children, color = T.teal, bg, style }) {
 /* ─── Section 0: Hero ─── */
 function Hero() {
   return (
-    <div style={{
+    <div className="ov-hero" style={{
       background: T.navy, color: T.white,
-      padding: '56px 64px 52px',
-      display: 'grid', gridTemplateColumns: '1fr auto',
-      gap: 48, alignItems: 'end',
     }}>
+    <div className="ov-hero-grid">
       <div>
         {/* Brand mark */}
         <div style={{
@@ -128,7 +126,7 @@ function Hero() {
       </div>
 
       {/* Right: stat cluster */}
-      <div style={{
+      <div className="ov-hero-stats" style={{
         display: 'flex', flexDirection: 'column', gap: 2,
         background: 'rgba(255,255,255,0.06)',
         border: '1px solid rgba(255,255,255,0.1)',
@@ -149,6 +147,7 @@ function Hero() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   )
 }
@@ -173,9 +172,9 @@ function IsIsnt() {
   ]
 
   return (
-    <div style={{ padding: '52px 64px', background: T.white, borderBottom: `1px solid ${T.line}` }}>
+    <div className="ov-section" style={{ background: T.white, borderBottom: `1px solid ${T.line}` }}>
       <Label style={{ marginBottom: 20, fontSize: 11 }}>Feature definition</Label>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+      <div className="ov-grid-2">
 
         {/* IS */}
         <div>
@@ -285,16 +284,16 @@ function HowItWorks() {
   ]
 
   return (
-    <div style={{ padding: '52px 64px', background: T.lightBg, borderBottom: `1px solid ${T.line}` }}>
+    <div className="ov-section" style={{ background: T.lightBg, borderBottom: `1px solid ${T.line}` }}>
       <Label style={{ marginBottom: 8, fontSize: 11 }}>Lifecycle</Label>
       <div style={{ fontFamily: sans, fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: T.navy, marginBottom: 36 }}>
         How it works
       </div>
 
       {/* Flow strip */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 0, position: 'relative' }}>
+      <div className="ov-grid-6">
         {/* Connector line */}
-        <div style={{
+        <div className="ov-lifecycle-connector" style={{
           position: 'absolute', top: 20, left: '8%', right: '8%',
           height: 2, background: `linear-gradient(90deg, ${T.navy}, ${T.teal})`,
           zIndex: 0,
@@ -348,7 +347,7 @@ function TwoModes() {
   ]
 
   return (
-    <div style={{ padding: '52px 64px', background: T.white, borderBottom: `1px solid ${T.line}` }}>
+    <div className="ov-section" style={{ background: T.white, borderBottom: `1px solid ${T.line}` }}>
       <Label style={{ marginBottom: 8, fontSize: 11 }}>Operating modes</Label>
       <div style={{ fontFamily: sans, fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: T.navy, marginBottom: 32 }}>
         Two architecturally distinct modes
@@ -356,7 +355,7 @@ function TwoModes() {
 
       <div style={{ border: `1px solid ${T.line}`, borderRadius: 10, overflow: 'hidden' }}>
         {/* Header */}
-        <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', background: T.navy }}>
+        <div className="ov-two-modes-grid" style={{ background: T.navy }}>
           <div style={{ padding: '16px 20px' }}/>
           <div style={{ padding: '16px 24px', borderLeft: `1px solid rgba(255,255,255,0.1)` }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -376,19 +375,16 @@ function TwoModes() {
 
         {/* Rows */}
         {rows.map((r, i) => (
-          <div key={r.label} style={{
-            display: 'grid', gridTemplateColumns: '180px 1fr 1fr',
-            borderTop: `1px solid ${T.line}`,
+          <div key={r.label} className="ov-two-modes-row" style={{
             background: i % 2 === 0 ? T.white : T.lightBg,
           }}>
-            <div style={{ padding: '14px 20px', display: 'flex', alignItems: 'flex-start' }}>
+            <div className="ov-table-cell-label">
               <div style={{ fontFamily: mono, fontSize: 10, fontWeight: 600, color: T.muted, letterSpacing: '0.05em', textTransform: 'uppercase', paddingTop: 2 }}>{r.label}</div>
             </div>
-            <div style={{ padding: '14px 24px', borderLeft: `1px solid ${T.line}` }}>
+            <div className="ov-table-cell-sprint">
               <div style={{ fontFamily: sans, fontSize: 13, color: T.body, lineHeight: 1.5 }}>{r.sprint}</div>
             </div>
-            <div style={{
-              padding: '14px 24px', borderLeft: `1px solid ${T.line}`,
+            <div className="ov-table-cell-emerg" style={{
               background: r.emergencyHighlight ? T.alertSoft : 'transparent',
             }}>
               <div style={{
@@ -438,12 +434,12 @@ function ValueDrivers() {
   ]
 
   return (
-    <div style={{ padding: '52px 64px', background: T.lightBg, borderBottom: `1px solid ${T.line}` }}>
+    <div className="ov-section" style={{ background: T.lightBg, borderBottom: `1px solid ${T.line}` }}>
       <Label style={{ marginBottom: 8, fontSize: 11 }}>Value proposition</Label>
       <div style={{ fontFamily: sans, fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: T.navy, marginBottom: 32 }}>
         What it drives
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+      <div className="ov-grid-4">
         {cards.map((c) => (
           <div key={c.label} style={{
             background: T.surface, border: `1px solid ${T.line}`,
@@ -520,12 +516,12 @@ function WhoItsFor() {
   ]
 
   return (
-    <div style={{ padding: '52px 64px', background: T.white, borderBottom: `1px solid ${T.line}` }}>
+    <div className="ov-section" style={{ background: T.white, borderBottom: `1px solid ${T.line}` }}>
       <Label style={{ marginBottom: 8, fontSize: 11 }}>Personas</Label>
       <div style={{ fontFamily: sans, fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: T.navy, marginBottom: 32 }}>
         Who it's for
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+      <div className="ov-grid-3">
         {personas.map((p) => (
           <div key={p.role} style={{
             border: `1px solid ${T.line}`, borderRadius: 10, overflow: 'hidden',
@@ -585,13 +581,13 @@ function WhoItsFor() {
 /* ─── Section 6: Access Model ─── */
 function AccessModel() {
   return (
-    <div style={{ padding: '52px 64px', background: T.lightBg }}>
+    <div className="ov-section" style={{ background: T.lightBg }}>
       <Label style={{ marginBottom: 8, fontSize: 11 }}>Access model</Label>
       <div style={{ fontFamily: sans, fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: T.navy, marginBottom: 32 }}>
         Who can access it
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="ov-grid-2">
 
         {/* Toptal-deployed teams */}
         <div style={{
@@ -708,6 +704,41 @@ function XIco({ color = '#fff', size = 10 }) {
 export function FrameOverview() {
   return (
     <div style={{ fontFamily: sans, background: T.lightBg, width: '100%', height: '100%', overflowY: 'auto' }}>
+      <style>{`
+        .ov-section { padding: clamp(28px, 5vw, 52px) clamp(16px, 5vw, 64px); }
+        .ov-hero { padding: clamp(28px, 5vw, 56px) clamp(16px, 5vw, 64px) clamp(24px, 4vw, 52px); }
+        .ov-footer { padding: 22px clamp(16px, 5vw, 64px); }
+        .ov-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .ov-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .ov-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .ov-grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; position: relative; }
+        .ov-hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; }
+        .ov-two-modes-grid { display: grid; grid-template-columns: 180px 1fr 1fr; }
+        .ov-two-modes-row { display: grid; grid-template-columns: 180px 1fr 1fr; border-top: 1px solid ${T.line}; }
+        .ov-table-cell-label { display: flex; align-items: flex-start; padding: 14px 20px; }
+        .ov-table-cell-sprint { padding: 14px 24px; border-left: 1px solid ${T.line}; }
+        .ov-table-cell-emerg { padding: 14px 24px; border-left: 1px solid ${T.line}; }
+        @media (max-width: 700px) {
+          .ov-hero-grid { grid-template-columns: 1fr; gap: 24px; }
+          .ov-hero-stats { min-width: unset !important; }
+          .ov-grid-2 { grid-template-columns: 1fr; }
+          .ov-grid-3 { grid-template-columns: 1fr; }
+          .ov-grid-4 { grid-template-columns: 1fr 1fr; }
+          .ov-grid-6 { grid-template-columns: repeat(2, 1fr); }
+          .ov-two-modes-grid { grid-template-columns: 1fr 1fr; }
+          .ov-two-modes-row { grid-template-columns: 1fr; }
+          .ov-two-modes-row > .ov-table-cell-label { padding: 10px 16px 4px; border-left: none; background: ${T.tableAlt}; }
+          .ov-two-modes-row > .ov-table-cell-sprint { padding: 8px 16px; border-left: none; border-top: 1px solid ${T.lineSoft}; }
+          .ov-two-modes-row > .ov-table-cell-emerg { padding: 8px 16px; border-left: none; border-top: 1px solid ${T.lineSoft}; }
+          .ov-two-modes-grid > :first-child { display: none; }
+          .ov-lifecycle-connector { display: none !important; }
+          .ov-footer { flex-direction: column !important; gap: 8px; align-items: flex-start !important; }
+        }
+        @media (max-width: 480px) {
+          .ov-grid-4 { grid-template-columns: 1fr; }
+          .ov-two-modes-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
       <Hero />
       <IsIsnt />
       <HowItWorks />
@@ -717,8 +748,7 @@ export function FrameOverview() {
       <AccessModel />
 
       {/* Footer */}
-      <div style={{
-        padding: '22px 64px',
+      <div className="ov-footer" style={{
         background: T.navy,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>

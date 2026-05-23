@@ -76,8 +76,8 @@ export default function DemoShell({ children }) {
         height: 52,
         background: 'var(--navy)',
         display: 'flex', alignItems: 'center',
-        padding: '0 20px',
-        gap: 16,
+        padding: '0 16px',
+        gap: 12,
         boxShadow: '0 1px 0 rgba(255,255,255,0.08)',
       }}>
         {/* Brand */}
@@ -93,26 +93,26 @@ export default function DemoShell({ children }) {
           <span style={{ fontSize: 13, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>
             Toptal
           </span>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', fontWeight: 400 }}>
+          <span className="shell-subtitle" style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', fontWeight: 400 }}>
             On-Demand Talent
           </span>
         </button>
 
         {/* Mode badge */}
         {mode && (
-          <span style={{
+          <span className="shell-mode-badge" style={{
             fontSize: 10.5, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase',
             padding: '2px 8px', borderRadius: 999,
             background: mode === 'emergency' ? 'var(--alert)' : 'var(--teal)',
             color: '#fff', flexShrink: 0,
           }}>
-            {mode === 'emergency' ? 'Emergency' : 'Sprint Support'}
+            {mode === 'emergency' ? 'Emergency' : 'Sprint'}
           </span>
         )}
 
-        {/* Lifecycle stepper (shown when in a flow) */}
+        {/* Lifecycle stepper — hidden on mobile */}
         {meta.stage && (
-          <div style={{
+          <div className="shell-stepper" style={{
             display: 'flex', alignItems: 'center', gap: 0,
             flex: 1, minWidth: 0, overflow: 'hidden',
           }}>
@@ -164,9 +164,9 @@ export default function DemoShell({ children }) {
 
         <div style={{ flex: meta.stage ? 0 : 1 }} />
 
-        {/* Persona chip */}
+        {/* Persona chip — hidden on mobile */}
         {meta.persona && (
-          <div style={{
+          <div className="shell-persona" style={{
             fontSize: 11.5, color: 'rgba(255,255,255,0.6)',
             background: 'rgba(255,255,255,0.08)',
             padding: '4px 10px', borderRadius: 4, flexShrink: 0,
@@ -199,7 +199,7 @@ export default function DemoShell({ children }) {
             <line x1="0" y1="5" x2="12" y2="5"/>
             <line x1="0" y1="8.5" x2="12" y2="8.5"/>
           </svg>
-          All screens
+          <span className="shell-nav-label">All screens</span>
         </button>
       </header>
 
@@ -211,11 +211,13 @@ export default function DemoShell({ children }) {
             style={{ position: 'fixed', inset: 0, zIndex: 98 }}
           />
           <div style={{
-            position: 'fixed', top: 52, right: 20, zIndex: 99,
-            background: '#fff', borderRadius: 6,
+            position: 'fixed', top: 52, right: 0, zIndex: 99,
+            background: '#fff', borderRadius: '0 0 6px 6px',
             boxShadow: 'var(--shadow-pop)',
             border: '1px solid var(--line)',
-            padding: '12px 0', minWidth: 220,
+            padding: '12px 0',
+            minWidth: 220, maxWidth: '100vw',
+            width: 'clamp(220px, 60vw, 280px)',
           }}>
             {NAV_LINKS.map(group => (
               <div key={group.label}>
@@ -269,6 +271,13 @@ export default function DemoShell({ children }) {
         @keyframes pulse-dot {
           0%, 100% { transform: scale(1); opacity: 1; }
           50% { transform: scale(1.3); opacity: 0.7; }
+        }
+        @media (max-width: 600px) {
+          .shell-stepper { display: none !important; }
+          .shell-persona { display: none !important; }
+          .shell-subtitle { display: none !important; }
+          .shell-nav-label { display: none !important; }
+          .shell-mode-badge { font-size: 9.5px !important; padding: 2px 6px !important; }
         }
       `}</style>
     </div>

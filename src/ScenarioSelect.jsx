@@ -23,7 +23,7 @@ export default function ScenarioSelect() {
       minHeight: 'calc(100vh - 52px)',
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
-      padding: '40px 24px',
+      padding: 'clamp(24px, 5vw, 40px) clamp(16px, 4vw, 24px)',
       background: 'var(--paper)',
     }}>
       {/* Header */}
@@ -51,7 +51,7 @@ export default function ScenarioSelect() {
       </div>
 
       {/* Overview link */}
-      <div style={{ width: '100%', maxWidth: 720, marginBottom: 20 }}>
+      <div style={{ width: '100%', maxWidth: 720, marginBottom: 16 }}>
         <button
           onClick={() => navigate('/overview')}
           style={{
@@ -97,8 +97,8 @@ export default function ScenarioSelect() {
 
       {/* Scenario cards */}
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: 20, width: '100%', maxWidth: 720, marginBottom: 20,
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gap: 16, width: '100%', maxWidth: 720, marginBottom: 16,
       }}>
         {/* Sprint Support */}
         <button
@@ -252,7 +252,7 @@ export default function ScenarioSelect() {
                 cursor: 'pointer', textAlign: 'left',
                 boxShadow: 'var(--shadow-card)',
                 transition: 'box-shadow 0.15s, transform 0.15s',
-                flex: '1 1 280px',
+                flex: '1 1 240px',
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.boxShadow = '0 4px 12px rgba(13,29,62,0.1)'

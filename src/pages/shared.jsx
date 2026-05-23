@@ -4,7 +4,7 @@ export function PageLayout({ children }) {
   return (
     <div style={{
       flex: 1, display: 'flex', flexDirection: 'column',
-      alignItems: 'center', padding: '32px 24px 64px',
+      alignItems: 'center', padding: 'clamp(20px, 4vw, 32px) clamp(16px, 4vw, 24px) 64px',
       minHeight: 'calc(100vh - 52px)',
       background: 'var(--paper)',
       gap: 24,
@@ -21,7 +21,7 @@ export function StepHeader({ step, title, description }) {
         fontSize: 11, fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase',
         color: 'var(--teal)', marginBottom: 8,
       }}>{step}</div>
-      <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--navy)', margin: '0 0 8px', letterSpacing: '-0.01em' }}>
+      <h2 style={{ fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 700, color: 'var(--navy)', margin: '0 0 8px', letterSpacing: '-0.01em' }}>
         {title}
       </h2>
       <p style={{ fontSize: 14, color: 'var(--muted)', margin: 0, lineHeight: 1.55 }}>{description}</p>
@@ -54,7 +54,8 @@ export function NextButton({ label, onClick }) {
 export function MobileFrame({ children }) {
   return (
     <div className="cad mobile-demo-frame" style={{
-      width: 390, height: 780,
+      width: 'min(390px, 100%)',
+      aspectRatio: '390 / 780',
       background: '#fff', borderRadius: 12, overflow: 'hidden',
       boxShadow: '0 8px 40px rgba(13,29,62,0.14)',
       border: '1px solid var(--line)', flexShrink: 0,
@@ -67,26 +68,32 @@ export function MobileFrame({ children }) {
 
 export function DesktopFrame({ children, width = 1280, minHeight = 800 }) {
   return (
-    <div className="cad" style={{
-      width: '100%', maxWidth: width, minHeight,
-      background: '#fff', borderRadius: 12, overflow: 'hidden',
-      boxShadow: '0 8px 40px rgba(13,29,62,0.14)',
-      border: '1px solid var(--line)',
-    }}>
-      {children}
+    /* Scroll wrapper — on narrow viewports the frame scrolls horizontally
+       rather than overflowing the page */
+    <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+      <div className="cad" style={{
+        width: width, minWidth: width, minHeight,
+        background: '#fff', borderRadius: 12, overflow: 'hidden',
+        boxShadow: '0 8px 40px rgba(13,29,62,0.14)',
+        border: '1px solid var(--line)',
+      }}>
+        {children}
+      </div>
     </div>
   )
 }
 
 export function TabletFrame({ children, width = 680 }) {
   return (
-    <div className="cad" style={{
-      width: '100%', maxWidth: width,
-      background: '#fff', borderRadius: 12, overflow: 'hidden',
-      boxShadow: '0 8px 40px rgba(13,29,62,0.14)',
-      border: '1px solid var(--line)', flexShrink: 0,
-    }}>
-      {children}
+    <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+      <div className="cad" style={{
+        width: '100%', maxWidth: width,
+        background: '#fff', borderRadius: 12, overflow: 'hidden',
+        boxShadow: '0 8px 40px rgba(13,29,62,0.14)',
+        border: '1px solid var(--line)', flexShrink: 0,
+      }}>
+        {children}
+      </div>
     </div>
   )
 }
