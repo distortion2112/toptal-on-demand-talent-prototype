@@ -186,7 +186,7 @@ export default function ScenarioSelect() {
       </div>
 
       {/* Overview link */}
-      <div style={{ width: '100%', maxWidth: 720, marginBottom: 0 }}>
+      <div style={{ width: '100%', maxWidth: 720, marginBottom: 48 }}>
         <button
           onClick={() => navigate('/overview')}
           style={{
