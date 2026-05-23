@@ -8,6 +8,7 @@ const STAGE_KEYS = ['flag', 'match', 'approve', 'onboard', 'active', 'closed']
 // Route → persona + stage config
 const ROUTE_META = {
   '/': { persona: null, stage: null },
+  '/overview': { persona: null, stage: null },
   '/sprint/gap-flag': { persona: 'Deployed Talent · Marcus Rivera', stage: 'flag' },
   '/sprint/sme-request': { persona: 'SME Network · Priya Nair', stage: 'match' },
   '/sprint/onboarding': { persona: 'SME Network · Priya Nair', stage: 'onboard' },
@@ -20,6 +21,12 @@ const ROUTE_META = {
 }
 
 const NAV_LINKS = [
+  {
+    label: 'Overview',
+    steps: [
+      { label: 'Feature Overview', path: '/overview' },
+    ],
+  },
   {
     label: 'Sprint Flow',
     steps: [
