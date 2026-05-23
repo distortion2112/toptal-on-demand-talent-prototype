@@ -76,7 +76,8 @@ body { margin: 0; }
   background: var(--paper);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
 }
 
