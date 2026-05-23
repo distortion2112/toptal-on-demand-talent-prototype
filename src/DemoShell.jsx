@@ -153,7 +153,7 @@ export default function DemoShell({ children }) {
                         }} />
                       ) : null}
                     </div>
-                    <span style={{ fontSize: 11, fontWeight: active ? 600 : 400, color: active ? '#fff' : 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap' }}>
+                    <span className="shell-step-label" style={{ fontSize: 11, fontWeight: active ? 600 : 400, color: active ? '#fff' : 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap' }}>
                       {s}
                     </span>
                   </div>
@@ -171,7 +171,7 @@ export default function DemoShell({ children }) {
             fontSize: 11.5, color: 'rgba(255,255,255,0.6)',
             background: 'rgba(255,255,255,0.08)',
             padding: '4px 10px', borderRadius: 4, flexShrink: 0,
-            whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 6,
+            display: 'flex', alignItems: 'center', gap: 6, minWidth: 0,
           }}>
             <div style={{
               width: 18, height: 18, borderRadius: '50%',
@@ -180,7 +180,7 @@ export default function DemoShell({ children }) {
             }}>
               {meta.persona.split('·')[1]?.trim().split(' ').map(w => w[0]).join('').slice(0,2) || 'U'}
             </div>
-            <span>{meta.persona}</span>
+            <span className="shell-persona-name">{meta.persona}</span>
           </div>
         )}
 
@@ -274,11 +274,17 @@ export default function DemoShell({ children }) {
           50% { transform: scale(1.3); opacity: 0.7; }
         }
         @media (max-width: 600px) {
-          .shell-stepper { display: none !important; }
-          .shell-persona { display: none !important; }
           .shell-subtitle { display: none !important; }
           .shell-nav-label { display: none !important; }
           .shell-mode-badge { font-size: 9.5px !important; padding: 2px 6px !important; }
+          .shell-step-label { display: none !important; }
+          .shell-persona-name {
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            white-space: nowrap !important;
+            max-width: 90px !important;
+            display: inline-block !important;
+          }
         }
       `}</style>
     </div>

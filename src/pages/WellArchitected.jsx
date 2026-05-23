@@ -33,6 +33,7 @@ export default function WellArchitected() {
               color: active === c.key ? c.badgeColor : 'var(--muted)',
               display: 'flex', alignItems: 'center', gap: 7,
               transition: 'all 0.15s',
+              minHeight: 44,
             }}
           >
             <span style={{
