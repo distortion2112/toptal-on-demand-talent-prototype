@@ -73,6 +73,7 @@ export function DesktopFrame({ children, width = 1280, minHeight = 800 }) {
     <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
       <div className="cad" style={{
         width: width, minWidth: width, minHeight,
+        margin: '0 auto',
         background: '#fff', borderRadius: 12, overflow: 'hidden',
         boxShadow: '0 8px 40px rgba(13,29,62,0.14)',
         border: '1px solid var(--line)',
@@ -88,6 +89,7 @@ export function TabletFrame({ children, width = 680 }) {
     <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
       <div className="cad" style={{
         width: '100%', maxWidth: width,
+        margin: '0 auto',
         background: '#fff', borderRadius: 12, overflow: 'hidden',
         boxShadow: '0 8px 40px rgba(13,29,62,0.14)',
         border: '1px solid var(--line)', flexShrink: 0,
