@@ -344,24 +344,24 @@ function SMEInbox() {
 }
 
 // ─── Frames for static artboards ────────────────────────────────────
-function FrameSprint() {
+function FrameSprint({ onAccept, onDecline, onPropose }) {
   return (
     <div className="cad" style={{ padding: 28, background: "var(--paper)", height: "100%", boxSizing: "border-box" }}>
-      <SprintRequestCard />
+      <SprintRequestCard onAccept={onAccept} onDecline={onDecline} onPropose={onPropose} />
     </div>
   );
 }
-function FrameEmergency() {
+function FrameEmergency({ onAccept, onDecline }) {
   return (
     <div className="cad" style={{ padding: 28, background: "var(--paper)", height: "100%", boxSizing: "border-box" }}>
-      <EmergencyRequestCard />
+      <EmergencyRequestCard onAccept={onAccept} onDecline={onDecline} />
     </div>
   );
 }
-function FrameProposer() {
+function FrameProposer({ onBack, onConfirm }) {
   return (
     <div className="cad" style={{ padding: 28, background: "var(--paper)", height: "100%", boxSizing: "border-box" }}>
-      <ProposerCard onBack={() => {}} onConfirm={() => {}} />
+      <ProposerCard onBack={onBack || (() => {})} onConfirm={onConfirm || (() => {})} />
     </div>
   );
 }
