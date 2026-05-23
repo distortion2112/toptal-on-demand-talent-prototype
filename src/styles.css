@@ -4311,6 +4311,15 @@ body { margin: 0; }
   .btn { min-height: 44px; }
   .req-actions .btn { min-height: 44px; }
   .sugg-dismiss { padding: 10px; }
+  .req-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .req-actions .btn.primary,
+  .req-actions .btn.alt {
+    flex: none;
+    width: 100%;
+  }
 }
 
 /* ─── req-meta 2-col on narrow mobile (Fix 7) ────────────────────── */
