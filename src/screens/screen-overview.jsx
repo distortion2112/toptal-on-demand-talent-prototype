@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 /* ─── Design tokens (mirror CSS vars for inline use) ─── */
 const T = {
@@ -336,6 +336,8 @@ function HowItWorks() {
 
 /* ─── Section 3: Two Modes ─── */
 function TwoModes() {
+  const [active, setActive] = useState('sprint')
+
   const rows = [
     { label: 'Trigger', sprint: 'Talent flags a skill gap during delivery', emergency: 'Talent flags a production outage or critical blocker' },
     { label: 'Onboarding SLA', sprint: '72 hours', emergency: '8 hours', emergencyHighlight: true },
@@ -346,55 +348,129 @@ function TwoModes() {
     { label: 'Conversion path', sprint: 'Sprint extension or long-term placement', emergency: 'Long-term placement if gap is structural' },
   ]
 
+  const modes = [
+    {
+      key: 'sprint',
+      label: 'Full Sprint Support',
+      sub: '72H ONBOARDING SLA',
+      dot: T.teal,
+      headerBg: T.navy,
+      headerAccent: 'rgba(255,255,255,0.1)',
+    },
+    {
+      key: 'emergency',
+      label: 'Emergency Support',
+      sub: '8H SLA · AI PLATFORM REQUIRED',
+      dot: T.alert,
+      headerBg: `rgba(212,37,81,0.12)`,
+      headerAccent: 'rgba(212,37,81,0.2)',
+    },
+  ]
+
+  const activeMode = modes.find(m => m.key === active)
+
   return (
     <div className="ov-section" style={{ background: T.white, borderBottom: `1px solid ${T.line}` }}>
       <Label style={{ marginBottom: 8, fontSize: 11 }}>Operating modes</Label>
-      <div style={{ fontFamily: sans, fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: T.navy, marginBottom: 32 }}>
+      <div style={{ fontFamily: sans, fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: T.navy, marginBottom: 24 }}>
         Two architecturally distinct modes
       </div>
 
+      {/* Tab switcher */}
+      <div style={{
+        display: 'flex', gap: 8, marginBottom: 24,
+        borderBottom: `2px solid ${T.line}`, paddingBottom: 0,
+      }}>
+        {modes.map(m => {
+          const isActive = active === m.key
+          return (
+            <button
+              key={m.key}
+              onClick={() => setActive(m.key)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 8,
+                padding: '10px 18px',
+                background: 'none', border: 'none',
+                borderBottom: isActive
+                  ? `2px solid ${m.key === 'emergency' ? T.alert : T.teal}`
+                  : '2px solid transparent',
+                marginBottom: -2,
+                cursor: 'pointer',
+                borderRadius: '6px 6px 0 0',
+                backgroundColor: isActive ? (m.key === 'emergency' ? T.alertSoft : T.tealSoft) : 'transparent',
+                transition: 'background 0.15s',
+              }}
+            >
+              <div style={{
+                width: 8, height: 8, borderRadius: 2,
+                background: isActive ? m.dot : T.muted,
+                flexShrink: 0,
+                transition: 'background 0.15s',
+              }}/>
+              <div style={{
+                fontFamily: sans, fontSize: 13.5, fontWeight: isActive ? 600 : 500,
+                color: isActive ? (m.key === 'emergency' ? T.alert : T.tealInk) : T.muted,
+                transition: 'color 0.15s',
+              }}>{m.label}</div>
+              <div style={{
+                fontFamily: mono, fontSize: 9.5,
+                color: isActive ? (m.key === 'emergency' ? T.alert : T.tealInk) : T.muted,
+                letterSpacing: '0.05em',
+                opacity: isActive ? 0.7 : 0.5,
+              }}>{m.sub}</div>
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Table */}
       <div style={{ border: `1px solid ${T.line}`, borderRadius: 10, overflow: 'hidden' }}>
-        {/* Header */}
-        <div className="ov-two-modes-grid" style={{ background: T.navy }}>
+        {/* Table header */}
+        <div style={{
+          display: 'grid', gridTemplateColumns: '180px 1fr',
+          background: T.navy,
+        }}>
           <div style={{ padding: '16px 20px' }}/>
-          <div style={{ padding: '16px 24px', borderLeft: `1px solid rgba(255,255,255,0.1)` }}>
+          <div style={{
+            padding: '16px 24px',
+            borderLeft: '1px solid rgba(255,255,255,0.1)',
+            background: active === 'emergency' ? 'rgba(212,37,81,0.15)' : 'transparent',
+          }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: 8, height: 8, borderRadius: 2, background: T.teal }}/>
-              <div style={{ fontFamily: sans, fontSize: 14, fontWeight: 600, color: T.white }}>Full Sprint Support</div>
+              <div style={{ width: 8, height: 8, borderRadius: 2, background: activeMode.dot }}/>
+              <div style={{ fontFamily: sans, fontSize: 14, fontWeight: 600, color: T.white }}>{activeMode.label}</div>
             </div>
-            <div style={{ fontFamily: mono, fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.06em', marginTop: 4 }}>72H ONBOARDING SLA</div>
-          </div>
-          <div style={{ padding: '16px 24px', borderLeft: `1px solid rgba(255,255,255,0.1)`, background: 'rgba(212,37,81,0.12)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: 8, height: 8, borderRadius: 2, background: T.alert }}/>
-              <div style={{ fontFamily: sans, fontSize: 14, fontWeight: 600, color: T.white }}>Emergency Support</div>
-            </div>
-            <div style={{ fontFamily: mono, fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.06em', marginTop: 4 }}>8H SLA · AI PLATFORM REQUIRED</div>
+            <div style={{ fontFamily: mono, fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.06em', marginTop: 4 }}>{activeMode.sub}</div>
           </div>
         </div>
 
         {/* Rows */}
-        {rows.map((r, i) => (
-          <div key={r.label} className="ov-two-modes-row" style={{
-            background: i % 2 === 0 ? T.white : T.lightBg,
-          }}>
-            <div className="ov-table-cell-label">
-              <div style={{ fontFamily: mono, fontSize: 10, fontWeight: 600, color: T.muted, letterSpacing: '0.05em', textTransform: 'uppercase', paddingTop: 2 }}>{r.label}</div>
-            </div>
-            <div className="ov-table-cell-sprint">
-              <div style={{ fontFamily: sans, fontSize: 13, color: T.body, lineHeight: 1.5 }}>{r.sprint}</div>
-            </div>
-            <div className="ov-table-cell-emerg" style={{
-              background: r.emergencyHighlight ? T.alertSoft : 'transparent',
+        {rows.map((r, i) => {
+          const cellValue = active === 'sprint' ? r.sprint : r.emergency
+          const highlight = active === 'emergency' && r.emergencyHighlight
+          return (
+            <div key={r.label} style={{
+              display: 'grid', gridTemplateColumns: '180px 1fr',
+              borderTop: `1px solid ${T.line}`,
+              background: i % 2 === 0 ? T.white : T.lightBg,
             }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', padding: '14px 20px' }}>
+                <div style={{ fontFamily: mono, fontSize: 10, fontWeight: 600, color: T.muted, letterSpacing: '0.05em', textTransform: 'uppercase', paddingTop: 2 }}>{r.label}</div>
+              </div>
               <div style={{
-                fontFamily: sans, fontSize: 13, lineHeight: 1.5,
-                color: r.emergencyHighlight ? T.alert : T.body,
-                fontWeight: r.emergencyHighlight ? 700 : 400,
-              }}>{r.emergency}</div>
+                padding: '14px 24px',
+                borderLeft: `1px solid ${T.line}`,
+                background: highlight ? T.alertSoft : 'transparent',
+              }}>
+                <div style={{
+                  fontFamily: sans, fontSize: 13, lineHeight: 1.5,
+                  color: highlight ? T.alert : T.body,
+                  fontWeight: highlight ? 700 : 400,
+                }}>{cellValue}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )
