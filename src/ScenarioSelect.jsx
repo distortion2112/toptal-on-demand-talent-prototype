@@ -53,7 +53,7 @@ export default function ScenarioSelect() {
       {/* Scenario cards */}
       <div style={{
         display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: 20, width: '100%', maxWidth: 720, marginBottom: 48,
+        gap: 20, width: '100%', maxWidth: 720, marginBottom: 20,
       }}>
         {/* Sprint Support */}
         <button
