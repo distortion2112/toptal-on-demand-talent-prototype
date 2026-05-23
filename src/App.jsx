@@ -1,6 +1,7 @@
 import React from 'react'
 import { DesignCanvas, DCSection, DCArtboard } from './design-canvas.jsx'
 
+import { FrameOverview } from './screens/screen-overview.jsx'
 import { FrameA, FrameB, FrameC, LiveFlow } from './screens/screen1.jsx'
 import { FrameSprint, FrameEmergency, FrameProposer, FrameInbox } from './screens/screen2.jsx'
 import { FrameBrief, FrameBriefChecklist } from './screens/screen3.jsx'
@@ -12,6 +13,14 @@ import { FrameWarNexus, FrameWarMeridian, FrameWarThornfield } from './screens/s
 export default function App() {
   return (
     <DesignCanvas initialZoom={0.95}>
+      <DCSection
+        id="overview"
+        title="Feature Overview · On-Demand Talent"
+        subtitle="Team-facing explainer — what it is, what it isn't, how it works, value prop, who it's for, and the access model. 1280px wide."
+      >
+        <DCArtboard id="overview-full" label="Feature overview — full page" width={1280} height={2400}><FrameOverview /></DCArtboard>
+      </DCSection>
+
       <DCSection
         id="screen1"
         title="Screen 1 · Gap Flag Interface"
