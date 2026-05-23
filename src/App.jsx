@@ -18,7 +18,7 @@ import EmergencyWarRoom from './pages/EmergencyWarRoom.jsx'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/on-demand-talent">
       <DemoProvider>
         <DemoShell>
           <Routes>
