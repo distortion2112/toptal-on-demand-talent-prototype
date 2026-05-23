@@ -129,19 +129,20 @@ Wrap existing desktop content in `.desktop-only`. Add `.mobile-only` sibling.
 
 ---
 
-## Fix 6 — `/emergency/context-card` ⚠️
+## Fix 6 — `/emergency/context-card` ❌
 
-**File:** `src/pages/EmergencyContextCard.jsx` (mobile-first page, uses `.ectx-mobile`)
+**File:** `src/pages/EmergencyContextCard.jsx`
 
-This page is already mobile-first — no DesktopFrame. Fix with additive CSS only.
+This page uses `<DesktopFrame width={860}>` — same `.desktop-only` / `.mobile-only` pattern applies.
 
-**Issues from screenshot:**
-- Red header: "P1 · PRODUCTION OUTAGE · BRIEF · ODT-P…" clips right — add `overflow: hidden` to `.ectx-top-r`, truncate the brief ID with `text-overflow: ellipsis`
-- Contact handles (`.contact .handle`): clip right edge — add `max-width: 120px; overflow: hidden; text-overflow: ellipsis` 
-- "WHAT'S BROKEN" / "WHAT CHANGED LAST" two columns: confirm `.ectx-mobile .ectx-sections { grid-template-columns: 1fr }` is applying — if the right column still clips, force `grid-template-columns: 1fr !important`
-- "Open war room" button: should be full width — if an inline `width` style is overriding the CSS, remove it
-
-All fixes in `styles.css` under `@media (max-width: 767px)` or by adding to the existing `.ectx-mobile` rules.
+**Mobile layout to build:**
+- Red P1 header band: severity badge + incident name on one line, brief ID + validity timer below — single column, full width, `padding: 12px 16px`
+- AI-generated headline: full width, `font-size: 20px`
+- "START HERE" directive block: full width
+- "WHAT'S BROKEN" + "WHAT CHANGED LAST": stack vertically (single column), each as its own labeled card
+- "WHO TO TALK TO" contacts: each contact row full width — avatar + name + role + handle; handle truncated with ellipsis if needed
+- Runbook links: full width card rows
+- Footer actions ("Mark as read", "Open war room"): both buttons `width: 100%`, `min-height: 44px`, stacked vertically
 
 ---
 
