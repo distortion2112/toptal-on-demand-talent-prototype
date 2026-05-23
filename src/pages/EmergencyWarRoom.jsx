@@ -245,14 +245,14 @@ export default function EmergencyWarRoom() {
           <div style={{ fontFamily: mono, fontSize: 10.5, color: T.tealInk, letterSpacing: '0.07em', textTransform: 'uppercase', marginBottom: 10 }}>Incident resolved</div>
           <div style={{ fontSize: 26, fontWeight: 700, color: T.navy, letterSpacing: '-0.02em', marginBottom: 10 }}>P1 closed · 43m 17s</div>
           <div style={{ fontSize: 14, color: T.muted, lineHeight: 1.6, marginBottom: 28 }}>
-            Ingress controller restored. worker_connections rolled back to 4096. Traffic normalized. Root cause confirmed: <strong style={{ color: T.body }}>v4.18.2 configuration regression.</strong>
+            Kong rate_limiting policy patched back to redis. /v2/trade routes restored. Traffic normalized. Root cause confirmed: <strong style={{ color: T.body }}>v2.9.1 Kong plugin misconfiguration.</strong>
           </div>
           <div style={{
             background: T.lightBg, borderRadius: 8,
             padding: '14px 18px', marginBottom: 24,
             display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8,
           }}>
-            {[['Time to resolve', '43m 17s'], ['SME onboard in', '8h SLA ✓'], ['Root cause', 'Config regression']].map(([k, v]) => (
+            {[['Time to resolve', '38m 44s'], ['SME onboard in', '8h SLA ✓'], ['Root cause', 'Kong misconfiguration']].map(([k, v]) => (
               <div key={k}>
                 <div style={{ fontFamily: mono, fontSize: 9.5, color: T.muted, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 4 }}>{k}</div>
                 <div style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, color: T.navy }}>{v}</div>
@@ -310,10 +310,10 @@ export default function EmergencyWarRoom() {
         {/* Incident name */}
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: sans, fontSize: 14, fontWeight: 600, color: T.white, letterSpacing: '-0.01em' }}>
-            Ingress drops ~30% of order-pipeline traffic · Northwind Logistics
+            API Gateway 503s on all /v2/trade routes · Halyard Capital
           </div>
           <div style={{ fontFamily: mono, fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.04em', marginTop: 2 }}>
-            INC-2621 · Degraded since 08:51 UTC · ${'{'}12k{'}'}/ hr revenue impact
+            INC-P1-0042 · Degraded since 14:07 UTC · 1,400 req/min failing
           </div>
         </div>
 
@@ -354,18 +354,18 @@ export default function EmergencyWarRoom() {
             background: T.navy, borderRadius: 8, padding: '14px 16px',
           }}>
             <div style={{ fontFamily: mono, fontSize: 9.5, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.07em', textTransform: 'uppercase', marginBottom: 6 }}>Slack war room</div>
-            <div style={{ fontFamily: sans, fontSize: 14, fontWeight: 600, color: T.white, marginBottom: 8 }}>#incident-northwind</div>
-            <div style={{ fontFamily: mono, fontSize: 10.5, color: 'rgba(255,255,255,0.5)' }}>47 messages · last 2m ago</div>
+            <div style={{ fontFamily: sans, fontSize: 14, fontWeight: 600, color: T.white, marginBottom: 8 }}>#incident-halyard</div>
+            <div style={{ fontFamily: mono, fontSize: 10.5, color: 'rgba(255,255,255,0.5)' }}>51 messages · last 1m ago</div>
           </div>
 
           {/* Participants */}
           <div>
             <SLabel>In this room · 5</SLabel>
-            <Participant initials="PN" name="Priya Nair" role="Kubernetes SME · Toptal" status="active" isYou color="#C7D9F0" />
+            <Participant initials="PN" name="Priya Nair" role="API Gateway SME · Toptal" status="active" isYou color="#C7D9F0" />
             <Participant initials="AS" name="Aaron Sokol" role="SRE · On-call lead" status="active" color="#D4E8D0" />
             <Participant initials="DT" name="Diego Toledo" role="Backend eng · deploy author" status="active" color="#F5D9C8" />
             <Participant initials="EL" name="Elena Larsen" role="Toptal escalation" status="idle" color="#E8D5F0" />
-            <Participant initials="MR" name="Marcus Rivera" role="Requestor · Northwind" status="idle" color="#E8D5B0" />
+            <Participant initials="MR" name="Marcus Rivera" role="Requestor · Halyard Capital" status="idle" color="#E8D5B0" />
           </div>
 
           {/* Hypothesis */}
@@ -377,10 +377,10 @@ export default function EmergencyWarRoom() {
             }}>
               <div style={{ fontFamily: mono, fontSize: 10, color: '#92400E', letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 600, marginBottom: 6 }}>Root cause theory</div>
               <div style={{ fontFamily: sans, fontSize: 13, color: '#78350F', lineHeight: 1.55 }}>
-                <strong>v4.18.2</strong> changed <code style={{ background: 'rgba(0,0,0,0.08)', padding: '0 4px', borderRadius: 3, fontFamily: mono, fontSize: 11 }}>worker_connections</code> from <strong>4096 → 1024</strong>. Burst traffic exceeds the new limit → ingress drops connections.
+                <strong>v2.9.1</strong> set Kong's <code style={{ background: 'rgba(0,0,0,0.08)', padding: '0 4px', borderRadius: 3, fontFamily: mono, fontSize: 11 }}>rate_limiting</code> policy to <strong>local</strong> instead of <strong>redis</strong>. Each node enforces limits independently → distributed checks fail → gateway blocks /v2/trade.
               </div>
               <div style={{ marginTop: 10, fontFamily: mono, fontSize: 10, color: '#92400E', letterSpacing: '0.04em' }}>
-                Proposed fix: rollback to v4.17.9 or patch worker_connections
+                Proposed fix: patch policy back to redis or revert to v2.8.4
               </div>
             </div>
           </div>
@@ -408,10 +408,10 @@ export default function EmergencyWarRoom() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {[
-                'Join #incident-northwind — Aaron is live and waiting',
-                'Review the nginx.conf diff in commit a3f29d2 (v4.18.2 → v4.17.9)',
-                'Confirm whether worker_connections is the root cause',
-                'Give Aaron a go/no-go on rollback within 15 minutes',
+                'Join #incident-halyard — Aaron is live and waiting',
+                'Review the Kong plugin config diff in commit b7e4c12 (v2.9.1 → v2.8.4)',
+                'Confirm whether rate_limiting policy (local vs redis) is the root cause',
+                'Give Aaron a go/no-go on the config patch within 15 minutes',
               ].map((a, i) => (
                 <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                   <div style={{
@@ -431,12 +431,12 @@ export default function EmergencyWarRoom() {
             <SLabel>Resolution checklist</SLabel>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               <CheckItem done text="P1 declared — incident channel opened" owner="Aaron Sokol" />
-              <CheckItem done text="Deploy diff identified — commit a3f29d2 in v4.18.2" owner="Diego Toledo" />
+              <CheckItem done text="Deploy diff identified — commit b7e4c12 in v2.9.1" owner="Diego Toledo" />
               <CheckItem done text="SME requested and accepted" owner="Marcus Rivera" />
-              <CheckItem active text="Root cause confirmed by Kubernetes SME" owner="Priya Nair" isYou />
-              <CheckItem text="Rollback decision made — go / no-go" owner="Priya + Aaron" />
-              <CheckItem text="v4.17.9 rollback deployed or hotfix pushed" owner="Diego Toledo" />
-              <CheckItem text="Traffic normalized — ingress errors < 0.1%" owner="Aaron Sokol" />
+              <CheckItem active text="Root cause confirmed by API Gateway SME" owner="Priya Nair" isYou />
+              <CheckItem text="Patch decision made — fix policy or revert" owner="Priya + Aaron" />
+              <CheckItem text="Kong config patched or v2.8.4 revert deployed" owner="Diego Toledo" />
+              <CheckItem text="Traffic normalized — 503 error rate < 0.1%" owner="Aaron Sokol" />
               <CheckItem text="P1 closed — postmortem scheduled" owner="Elena Larsen" />
             </div>
           </div>
@@ -445,13 +445,13 @@ export default function EmergencyWarRoom() {
           <div>
             <SLabel>Activity timeline</SLabel>
             <div style={{ background: T.surface, border: `1px solid ${T.line}`, borderRadius: 10, padding: '6px 18px', overflow: 'hidden' }}>
-              <TimelineEvent time="08:51" initials="AS" actorColor="#D4E8D0" actor="Aaron Sokol" tag="Incident opened" text="Order-pipeline error rate crossed 30%. P1 declared. #incident-northwind created." />
-              <TimelineEvent time="08:54" initials="DT" actorColor="#F5D9C8" actor="Diego Toledo" tag="Joined" text="Pulled last 3 deploys. Reviewing nginx config changes. Suspect v4.18.2." />
-              <TimelineEvent time="09:01" initials="DT" actorColor="#F5D9C8" actor="Diego Toledo" tag="Finding" text="Confirmed: worker_connections changed 4096 → 1024 in v4.18.2. Awaiting SME to confirm impact under burst." />
-              <TimelineEvent time="09:14" initials="MR" actorColor="#E8D5B0" actor="Marcus Rivera" tag="SME requested" text="Flagged Kubernetes skill gap. On-demand SME request submitted — P1 fast path. Priya matched." />
-              <TimelineEvent time="09:19" initials="EL" actorColor="#E8D5F0" actor="Elena Larsen" tag="Escalation" text="Toptal escalation on standby. Priya notified with 8h SLA context card." />
-              <TimelineEvent time="09:22" initials="PN" actorColor="#C7D9F0" actor="Priya Nair" tag="Accepted" text="Accepted P1 engagement. Condensed context card received and reviewed." />
-              <TimelineEvent time="09:37" initials="PN" actorColor="#C7D9F0" actor="Priya Nair" tag="Now · joined" text="Priya is in the war room. Root cause review in progress." highlight />
+              <TimelineEvent time="14:07" initials="AS" actorColor="#D4E8D0" actor="Aaron Sokol" tag="Incident opened" text="API Gateway error rate spiked to 94%. All /v2/trade routes returning 503. P1 declared. #incident-halyard created." />
+              <TimelineEvent time="14:09" initials="DT" actorColor="#F5D9C8" actor="Diego Toledo" tag="Joined" text="Pulled last 3 deploys. Reviewing Kong plugin config changes from v2.9.1 deploy at 14:04." />
+              <TimelineEvent time="14:11" initials="DT" actorColor="#F5D9C8" actor="Diego Toledo" tag="Finding" text="Confirmed: rate_limiting policy changed from redis → local in v2.9.1. Each node enforcing independently. Awaiting SME to confirm fix path." />
+              <TimelineEvent time="14:10" initials="MR" actorColor="#E8D5B0" actor="Marcus Rivera" tag="SME requested" text="Flagged API Gateway skill gap. On-demand SME request submitted — P1 fast path. Priya matched." />
+              <TimelineEvent time="14:15" initials="EL" actorColor="#E8D5F0" actor="Elena Larsen" tag="Escalation" text="Toptal escalation on standby. Priya notified with 8h SLA context card." />
+              <TimelineEvent time="14:18" initials="PN" actorColor="#C7D9F0" actor="Priya Nair" tag="Accepted" text="Accepted P1 engagement. Condensed context card received and reviewed." />
+              <TimelineEvent time="14:33" initials="PN" actorColor="#C7D9F0" actor="Priya Nair" tag="Now · joined" text="Priya is in the war room. Root cause review in progress." highlight />
             </div>
           </div>
         </div>
@@ -468,10 +468,10 @@ export default function EmergencyWarRoom() {
             <SLabel>Live impact</SLabel>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
               {[
-                { k: 'Error rate', v: '29.4%', color: T.alert },
-                { k: 'Revenue / hr', v: '$12k', color: T.alert },
-                { k: 'Requests dropped', v: '~14k', color: T.amber },
-                { k: 'Services affected', v: '3', color: T.amber },
+                { k: 'Error rate', v: '94%', color: T.alert },
+                { k: 'Req/min failing', v: '1,400', color: T.alert },
+                { k: 'Routes affected', v: '/v2/trade', color: T.amber },
+                { k: 'Services down', v: '2', color: T.amber },
               ].map(({ k, v, color }) => (
                 <div key={k} style={{
                   background: T.lightBg, border: `1px solid ${T.lineSoft}`,
@@ -491,23 +491,23 @@ export default function EmergencyWarRoom() {
               <ResourceLink
                 urgent
                 icon={<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="9" height="9" rx="1.5"/><path d="M5 6.5 H8 M5 5 H8 M5 8 H6.5"/></svg>}
-                label="Ingress runbook"
+                label="Kong plugin runbook"
                 sub="P1 playbook · last updated 3d ago"
               />
               <ResourceLink
                 icon={<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"><rect x="2" y="2.5" width="9" height="8" rx="1.2"/><path d="M4 5.5 H9 M4 7.5 H9 M4 9.5 H7"/></svg>}
-                label="Datadog · live errors"
-                sub="order-pipeline · last 30m"
+                label="Datadog · live 503s"
+                sub="/v2/trade routes · last 30m"
               />
               <ResourceLink
                 icon={<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M1.5 11 H11.5 M2.5 11 V8 M5 11 V4 M7.5 11 V6 M10 11 V2.5"/></svg>}
                 label="Grafana dashboard"
-                sub="Ingress · error rate panel"
+                sub="halyard-api-gateway · error rate"
               />
               <ResourceLink
                 icon={<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round"><path d="M3 1.5 H8 L10.5 4 V11.5 H3 Z"/><path d="M8 1.5 V4 H10.5"/><path d="M5 7 H8.5 M5 9 H8.5"/></svg>}
-                label="Commit diff · a3f29d2"
-                sub="v4.18.2 → worker_connections"
+                label="Commit diff · b7e4c12"
+                sub="v2.9.1 → rate_limiting policy"
               />
             </div>
           </div>

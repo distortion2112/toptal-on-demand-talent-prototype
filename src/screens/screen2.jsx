@@ -147,7 +147,7 @@ function EmergencyRequestCard({ onAccept, onDecline }) {
       <div className="req-head">
         <div className="req-eyebrow">
           <span className="badge emergency">Emergency · P1</span>
-          <span className="req-id">REQ · ODT-2621 · ISSUED 09:14 UTC</span>
+          <span className="req-id">REQ · ODT-P1-0042 · ISSUED 14:10 UTC</span>
         </div>
         <div className="req-timer emergency">
           <span className="lbl">SLA window</span>
@@ -163,25 +163,25 @@ function EmergencyRequestCard({ onAccept, onDecline }) {
           </span>
         </div>
         <div className="skills">
-          Kubernetes <span className="slash">/</span> Ingress
+          API Gateway <span className="slash">/</span> Kong
         </div>
         <div className="for">
-          For <b>Northwind Logistics · Order Pipeline</b> · production outage in progress
+          For <b>Halyard Capital · Trading Platform</b> · production outage in progress
         </div>
       </div>
 
       <div className="outage-cells">
         <div className="outage-cell">
           <div className="k">What's broken</div>
-          <div className="v">Ingress controller drops 30% of order-pipeline traffic under burst load since 08:51 UTC.</div>
+          <div className="v">API Gateway returning 503s on all /v2/trade routes. 94% error rate · 1,400 req/min failing since 14:07 UTC.</div>
         </div>
         <div className="outage-cell">
           <div className="k">What changed last</div>
-          <div className="v">Deploy <span style={{ fontFamily: "var(--font-mono)" }}>v4.18.2</span> · 07:42 UTC · NGINX config patch.</div>
+          <div className="v">Deploy <span style={{ fontFamily: "var(--font-mono)" }}>v2.9.1</span> · 14:04 UTC · Kong rate-limit plugin config.</div>
         </div>
         <div className="outage-cell">
           <div className="k">On-call lead</div>
-          <div className="v">Aaron Chen · SRE · <span style={{ fontFamily: "var(--font-mono)", fontSize: 11.5, color: "var(--muted)" }}>@achen</span></div>
+          <div className="v">Aaron Sokol · SRE · <span style={{ fontFamily: "var(--font-mono)", fontSize: 11.5, color: "var(--muted)" }}>@asokol</span></div>
         </div>
         <div className="outage-cell">
           <div className="k">Onboarding</div>
@@ -303,7 +303,7 @@ function SMEInbox() {
           <span className="ct" style={{ background: "var(--success-soft)", color: "var(--success)" }}>✓</span>
         </div>
         <div className="nav-link">
-          <span>Kubernetes</span>
+          <span>API Gateway / Kong</span>
           <span className="ct" style={{ background: "var(--success-soft)", color: "var(--success)" }}>✓</span>
         </div>
         <div className="nav-link">
