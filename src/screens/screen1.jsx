@@ -336,7 +336,7 @@ function LifecycleStepper({ stage = 1 }) {
 }
 
 // ─── State C: Confirmation + Stepper ────────────────────────────────
-function StateC() {
+function StateC({ onContinue }) {
   return (
     <>
       <StatusBar />
@@ -357,12 +357,29 @@ function StateC() {
           <b>You'll get a push</b> when an SME accepts. No further action needed unless the system asks for approval.
         </div>
       </div>
+
+      {onContinue && (
+        <div style={{ padding: "16px 18px 24px" }}>
+          <button
+            onClick={onContinue}
+            style={{
+              width: "100%", padding: "12px",
+              background: "var(--teal)", color: "#fff",
+              border: "none", borderRadius: "var(--radius-sm)",
+              fontSize: 14, fontWeight: 600, cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+            }}
+          >
+            See SME request <Ico.arrow/>
+          </button>
+        </div>
+      )}
     </>
   );
 }
 
 // ─── Live interactive flow (state machine) ──────────────────────────
-function LiveFlow() {
+function LiveFlow({ onComplete }) {
   const [state, setState] = useState("A"); // A · B · C
   const [resetKey, setResetKey] = useState(0);
 
@@ -378,7 +395,7 @@ function LiveFlow() {
       {state === "B" && (
         <StateB onBack={() => setState("A")} onSubmit={() => setState("C")} />
       )}
-      {state === "C" && <StateC key={resetKey} />}
+      {state === "C" && <StateC key={resetKey} onContinue={onComplete} />}
 
       {/* Reset chip */}
       <button

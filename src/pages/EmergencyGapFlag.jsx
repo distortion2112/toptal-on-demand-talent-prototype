@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDemo } from '../demo-store.jsx'
 import { LiveFlow } from '../screens/screen1.jsx'
-import { PageLayout, StepHeader, NextButton, MobileFrame } from './shared.jsx'
+import { PageLayout, StepHeader, MobileFrame } from './shared.jsx'
 
 export default function EmergencyGapFlag() {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ export default function EmergencyGapFlag() {
       <StepHeader
         step="Emergency Flow · Step 1 of 3"
         title="Emergency Flag Interface"
-        description="Production is down. Marcus flags it as Emergency Support — the system routes to a pre-authorized fast path with an 8-hour SLA."
+        description="Production is down. Marcus flags it — switch the support mode to 'Emergency' on the form, then submit to see the P1 SME request."
       />
       <div style={{
         background: 'var(--alert-soft)', border: '1px solid rgba(212,37,81,0.2)',
@@ -31,12 +31,11 @@ export default function EmergencyGapFlag() {
           <path d="M7 5V8" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
           <circle cx="7" cy="10" r="0.7" fill="white"/>
         </svg>
-        Emergency mode — pre-authorized SME fast path · 8h SLA
+        Tip: select "Emergency" mode on the form to route the P1 fast path
       </div>
       <MobileFrame>
-        <LiveFlow />
+        <LiveFlow onComplete={advance} />
       </MobileFrame>
-      <NextButton label="Continue: SME receives P1 alert →" onClick={advance} />
     </PageLayout>
   )
 }
