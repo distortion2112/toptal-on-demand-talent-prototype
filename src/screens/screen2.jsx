@@ -313,10 +313,10 @@ function SMEInbox() {
 
         <div style={{ flex: 1 }}/>
         <div style={{ padding: "12px 6px", borderTop: "1px solid var(--line-soft)", display: "flex", alignItems: "center", gap: 10 }}>
-          <div className="appbar-avatar" style={{ width: 26, height: 26 }}>AC</div>
+          <div className="appbar-avatar" style={{ width: 26, height: 26 }}>PN</div>
           <div>
-            <div style={{ fontSize: 12.5, fontWeight: 500 }}>Aaron Chen</div>
-            <div style={{ fontSize: 10.5, color: "var(--muted)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>3 ENGAGEMENTS · BERLIN</div>
+            <div style={{ fontSize: 12.5, fontWeight: 500 }}>Priya Nair</div>
+            <div style={{ fontSize: 10.5, color: "var(--muted)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>3 ENGAGEMENTS · AMSTERDAM</div>
           </div>
         </div>
       </aside>

@@ -293,7 +293,7 @@ function StateB({ onBack, onSubmit, initialMode = "sprint" }) {
 
       <div className="sheet-foot">
         <div className="submit-summary">
-          <span>You · <b>Maya R.</b></span>
+          <span>You · <b>Marcus R.</b></span>
           <span>Engagement · <b>Halyard Capital</b></span>
         </div>
         <button className={"btn " + (mode === "emergency" ? "btn-clay" : "btn-primary") + " btn-lg btn-block"} style={{ width: "100%" }} onClick={() => onSubmit({ mode, start })}>
@@ -595,7 +595,7 @@ function EmergencyStateB({ onBack, onSubmit }) {
 
       <div className="sheet-foot">
         <div className="submit-summary">
-          <span>You · <b>Maya R.</b></span>
+          <span>You · <b>Marcus R.</b></span>
           <span>Engagement · <b>Halyard Capital</b></span>
         </div>
         <button className="btn btn-clay btn-lg btn-block" style={{ width: "100%" }} onClick={() => onSubmit()}>

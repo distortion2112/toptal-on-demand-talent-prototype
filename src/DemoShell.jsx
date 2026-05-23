@@ -12,12 +12,12 @@ const ROUTE_META = {
   '/sprint/gap-flag': { persona: 'Deployed Talent · Marcus Rivera', stage: 'flag' },
   '/sprint/sme-request': { persona: 'SME Network · Priya Nair', stage: 'match' },
   '/sprint/onboarding': { persona: 'SME Network · Priya Nair', stage: 'onboard' },
-  '/sprint/dashboard': { persona: 'Delivery Lead · Alex Chen', stage: 'approve' },
+  '/sprint/dashboard': { persona: 'Delivery Lead · Elena Larsen', stage: 'approve' },
   '/emergency/gap-flag': { persona: 'Deployed Talent · Marcus Rivera', stage: 'flag' },
   '/emergency/sme-request': { persona: 'SME Network · Priya Nair', stage: 'match' },
   '/emergency/context-card': { persona: 'SME Network · Priya Nair', stage: 'onboard' },
   '/client-portal': { persona: 'Client · Halyard Capital', stage: null },
-  '/well-architected': { persona: 'Delivery Lead · Alex Chen', stage: null },
+  '/well-architected': { persona: 'Delivery Lead · Elena Larsen', stage: null },
 }
 
 const NAV_LINKS = [

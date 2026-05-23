@@ -125,7 +125,7 @@ export default function SprintDashboard() {
       <StepHeader
         step="Sprint Flow · Step 4 of 4"
         title="Management Dashboard"
-        description="Alex Chen — the delivery lead — has full portfolio visibility. One row shows the pending approval from Marcus. SLA tracking across all in-flight requests, with inline approve action."
+        description="Elena Larsen — the delivery lead — has full portfolio visibility. One row shows the pending approval from Marcus. SLA tracking across all in-flight requests, with inline approve action."
       />
 
       {/* Desktop — unchanged */}

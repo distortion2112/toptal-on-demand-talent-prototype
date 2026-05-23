@@ -38,7 +38,7 @@ const ROWS = [
   },
   {
     id: "r2", new: true,
-    name: "Aaron Chen", handle: "@achen",
+    name: "Ravi Sharma", handle: "@ravi",
     avc: "c3",
     engagement: "Northwind Logistics",
     engNote: "Order pipeline · P1",
@@ -77,7 +77,7 @@ const ROWS = [
   },
   {
     id: "r5", new: false,
-    name: "Priya Sharma", handle: "@priya",
+    name: "Nadia Vasquez", handle: "@nadia",
     avc: "c6",
     engagement: "OmniLabs",
     engNote: "Type-safety push",
@@ -171,9 +171,9 @@ function Row({ row, openApproval, onApprove }) {
           <div className="approval-pop" onClick={(e) => e.stopPropagation()}>
             <div className="h">Case-by-case approval · ODT-2614</div>
             <div className="title">Approve SME engagement?</div>
-            <div className="sub">Maya flagged this gap. The matched SME has accepted and is awaiting your sign-off to start onboarding.</div>
+            <div className="sub">Marcus flagged this gap. The matched SME has accepted and is awaiting your sign-off to start onboarding.</div>
             <div className="facts">
-              <div className="fact"><span className="k">SME</span><span className="v sans">Aaron Chen · @achen</span></div>
+              <div className="fact"><span className="k">SME</span><span className="v sans">Priya Nair · @pnair</span></div>
               <div className="fact"><span className="k">Skill</span><span className="v sans">Kubernetes · Ingress</span></div>
               <div className="fact"><span className="k">Duration</span><span className="v">~1 sprint · 4d</span></div>
               <div className="fact"><span className="k">Est. cost</span><span className="v">$5,000 · 5d × $1,250</span></div>
