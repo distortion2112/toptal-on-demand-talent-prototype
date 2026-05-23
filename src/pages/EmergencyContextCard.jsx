@@ -23,7 +23,7 @@ function ExtIco() { return <svg width="11" height="11" viewBox="0 0 11 11" fill=
 
 function MobileContextCard({ onOpenWarRoom }) {
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ width: '100%', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
       {/* P1 header band — full width */}
       <div style={{ background: 'var(--alert)', borderRadius: 8, padding: '12px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>

@@ -125,9 +125,9 @@ function MobileOnboardingBrief({ onAdvance }) {
   const [activeSection, setActiveSection] = useState(0)
 
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
+    <div style={{ width: '100%', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 0 }}>
       {/* Section tab strip — horizontally scrollable */}
-      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', display: 'flex', gap: 6, paddingBottom: 4, scrollbarWidth: 'none' }}>
+      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', display: 'flex', gap: 6, paddingBottom: 4, scrollbarWidth: 'none', minWidth: 0, width: '100%' }}>
         {SECTIONS.map((s, i) => (
           <button
             key={s.num}

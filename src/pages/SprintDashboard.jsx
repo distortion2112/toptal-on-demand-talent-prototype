@@ -34,7 +34,7 @@ function MobileDashboard() {
   const [approved, setApproved] = useState(false)
 
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <div style={{ width: '100%', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
       {/* KPI 2×2 grid */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
         {MOBILE_KPIS.map(k => (

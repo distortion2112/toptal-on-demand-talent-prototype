@@ -4303,7 +4303,7 @@ body { margin: 0; }
 
 @media (max-width: 767px) {
   .desktop-only { display: none;  }
-  .mobile-only  { display: block; }
+  .mobile-only  { display: block; width: 100%; box-sizing: border-box; min-width: 0; }
 }
 
 /* ─── Global tap targets on mobile (Fix 8) ───────────────────────── */

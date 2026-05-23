@@ -8,6 +8,7 @@ export function PageLayout({ children }) {
       minHeight: 'calc(100vh - 52px)',
       background: 'var(--paper)',
       gap: 24,
+      maxWidth: '100vw', overflow: 'hidden',
     }}>
       {children}
     </div>

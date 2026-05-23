@@ -135,7 +135,7 @@ function MobileWellArchitected({ active, setActive }) {
   const client = CLIENTS.find(c => c.key === active)
 
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <div style={{ width: '100%', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
       {/* Client selector pills */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {CLIENTS.map(c => (
