@@ -30,7 +30,7 @@ const SECTIONS = [
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {[
           { i: 'MR', n: 'Maya Rivera', r: 'Lead engineer · Berlin', you: false },
-          { i: 'AC', n: 'Aaron Chen', r: 'SME · Kubernetes/Ingress · Berlin', you: true },
+          { i: 'PN', n: 'Priya Nair', r: 'SME · Platform Infrastructure · Toptal · Amsterdam', you: true },
           { i: 'JK', n: 'Jonas Kreft', r: 'Backend · Go services · Vienna', you: false },
           { i: 'SN', n: 'Sana Noor', r: 'Frontend · Next.js · Lahore', you: false },
           { i: 'DT', n: 'Diego Toledo', r: 'Platform · SRE · São Paulo', you: false },

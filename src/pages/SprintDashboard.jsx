@@ -12,11 +12,11 @@ const MOBILE_KPIS = [
 ]
 
 const MOBILE_REQUESTS = [
-  { initials: 'MR', name: 'Maya Rivera', handle: '@maya', client: 'Halyard Capital', sprint: 'Sprint 14 · day 6', skill: 'Kubernetes · Cluster networking, Ingress', mode: 'Sprint', stage: 'Pending approval', stageColor: '#F59E0B', sla: '62h / 72h', slaPercent: 87, slaDanger: true, canApprove: true },
-  { initials: 'AC', name: 'Aaron Chen', handle: '@achen', client: 'Northwind Logistics', sprint: 'Order pipeline · P1', skill: 'Kubernetes · Ingress · burst load', mode: 'Emergency', stage: 'Active · incident', stageColor: 'var(--alert)', sla: '5h / 8h', slaPercent: 64, slaDanger: false, canApprove: false },
+  { initials: 'PN', name: 'Priya Nair', handle: '@pnair', client: 'Halyard Capital', sprint: 'Sprint 14 · day 6', skill: 'Kubernetes · Cluster networking, Ingress', mode: 'Sprint', stage: 'Pending approval', stageColor: '#F59E0B', sla: '62h / 72h', slaPercent: 87, slaDanger: true, canApprove: true },
+  { initials: 'RS', name: 'Ravi Sharma', handle: '@ravi', client: 'Northwind Logistics', sprint: 'Order pipeline · P1', skill: 'Kubernetes · Ingress · burst load', mode: 'Emergency', stage: 'Active · incident', stageColor: 'var(--alert)', sla: '5h / 8h', slaPercent: 64, slaDanger: false, canApprove: false },
   { initials: 'SP', name: 'Sam Park', handle: '@sampark', client: 'Acme Bank', sprint: 'Mobile checkout', skill: 'Postgres · Query plan tuning', mode: 'Sprint', stage: 'Matching', stageColor: 'var(--blue)', sla: '2h 5m / 4h', slaPercent: 52, slaDanger: false, canApprove: false },
   { initials: 'LB', name: 'Lisa Bourne', handle: '@lbourne', client: 'Mistral Studio', sprint: 'Public site rebuild', skill: 'React/Next.js · App router migration', mode: 'Sprint', stage: 'Active', stageColor: 'var(--teal)', sla: '12h / 72h', slaPercent: 18, slaDanger: false, canApprove: false },
-  { initials: 'PS', name: 'Priya Sharma', handle: '@priya', client: 'OmniLabs', sprint: 'Type-safety push', skill: 'TypeScript · Conditional types', mode: 'Sprint', stage: 'Matching', stageColor: 'var(--blue)', sla: '38m / 4h', slaPercent: 12, slaDanger: false, canApprove: false },
+  { initials: 'NV', name: 'Nadia Vasquez', handle: '@nadia', client: 'OmniLabs', sprint: 'Type-safety push', skill: 'TypeScript · Conditional types', mode: 'Sprint', stage: 'Matching', stageColor: 'var(--blue)', sla: '38m / 4h', slaPercent: 12, slaDanger: false, canApprove: false },
   { initials: 'KT', name: 'Kai Tanaka', handle: '@kai', client: 'Foxglove Health', sprint: 'Closed May 24', skill: 'Postgres · Replication setup', mode: 'Sprint', stage: 'Closed · Converted', stageColor: 'var(--muted)', sla: 'Met · 38h', slaPercent: 100, slaDanger: false, canApprove: false },
 ]
 
@@ -89,7 +89,7 @@ function MobileDashboard() {
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 6 }}>Case-by-case approval · ODT-2614</div>
             <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--navy)', marginBottom: 14 }}>Approve SME engagement?</div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 12 }}>
-              {[['SME', 'Aaron Chen · @achen'], ['Skill', 'Kubernetes · Ingress'], ['Duration', '~1 sprint · 4d'], ['Est. cost', '$5,000 · 5d × $1,250']].map(([k, v]) => (
+              {[['SME', 'Priya Nair · @pnair'], ['Skill', 'Kubernetes · Ingress'], ['Duration', '~1 sprint · 4d'], ['Est. cost', '$5,000 · 5d × $1,250']].map(([k, v]) => (
                 <div key={k} style={{ background: 'var(--paper)', borderRadius: 6, padding: '8px 10px' }}>
                   <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 2 }}>{k}</div>
                   <div style={{ fontSize: 12.5, color: 'var(--ink)', fontWeight: 500 }}>{v}</div>
